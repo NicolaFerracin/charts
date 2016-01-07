@@ -1,8 +1,6 @@
 var Bar = require('./models/bar');  // load the Bar mongoose model
-var User = require('./models/user');  // load the User mongoose model for passport.js authentication
 
-module.exports = function(app, passport) {
-
+module.exports = function(app) {
 
 
 	// api ---------------------------------------------------------------------
@@ -76,87 +74,6 @@ module.exports = function(app, passport) {
 						}
 					});
 				}
-			}
-		});
-	});
-
-	// process the login form
-	// Express Route with passport authentication and custom callback
-	app.post('/api/login', function(req, res, next) {
-		passport.authenticate('local-login', function(err, user, info) {
-			if (err) {
-				return next(err);
-			}
-			if (user === false) {
-				res.status(401).send(req.flash('loginMessage'));
-			} else {
-				req.login(user, function(err) {
-					if (err) {
-						res.status(500).send("There has been an error");
-					} else {
-						console.log(user)
-						res.status(200).send("success!");
-					}
-				});
-			}
-		})(req, res, next);
-	});
-
-	// process the signup form
-	// Express Route with passport authentication and custom callback
-	app.post('/api/signup', function(req, res, next) {
-		passport.authenticate('local-signup', function(err, user, info) {
-			if (err) {
-				return next(err);
-			}
-			if (user === false) {
-				res.status(401).send(req.flash('signupMessage'));
-			} else {
-				res.status(200).send("success!");
-			}
-		})(req, res, next);
-	});
-
-	app.get('/loggedin', function(req, res) {
-		if (req.isAuthenticated()) {
-			var user = req.user;
-			// hide sensible information
-			user.local.password = "";
-			res.json(req.user);
-		}
-		else {
-			res.json(undefined);
-		}
-	});
-
-	// =====================================
-	// LOGOUT ==============================
-	// =====================================
-	app.get('/logout', function(req, res) {
-		req.logout();
-		res.redirect('/');
-	});
-
-	// update a user entry with new bar
-	app.post('/api/user/:id', function(req, res) {
-		User.findOne({ '_id' :  req.params.id }, function(err, user) {
-			if (err) {
-				res.send(err);
-			} else {
-				user.bars = req.body;
-				user.save(function(err) {
-					if (err) {
-						return next(err)
-					} else {
-						req.login(user, function(err) {
-							if (err) {
-								return next(err)
-							} else {
-								res.sendStatus(200)
-							}
-						})
-					}
-				});
 			}
 		});
 	});
