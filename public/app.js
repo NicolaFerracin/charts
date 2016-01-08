@@ -63,7 +63,7 @@ var app = angular.module('ChartApp', []);
 
   // get the window height and stretch the vertical divider - 50 to show the footer
   $(".divider").css("min-height", $(window).height() - 70);
-  $("#chart").css("height", $(window).height() - 260)
+  $("#chart").css("min-height", $(window).height() - 260)
 
   // check the DB and retrieve the stocks currently active
   checkDatabase();
