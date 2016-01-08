@@ -1,4 +1,57 @@
-/* body background */
 body  {
-  background: #002c33 no-repeat center center fixed;
+  background-color: #363540;
+}
+
+.row h1 {
+  color: #EE0E51;
+  margin-top: 80px;
+}
+
+.footer {
+  margin-top: -20px;
+  color: #E4DCEF;
+}
+
+.footer p {
+  margin-left: 50px;
+}
+
+.divider {
+  border-right: 1px solid #FFF;
+}
+
+#list-stocks {
+  margin-right: -15px;
+}
+
+#search-stock {
+  margin-top: 20px;
+}
+
+.circle:after {
+  padding-right: 15px;
+  content: ' \25CF';
+  font-size: 40px;
+}
+
+.remove {
+  margin-top: 4%;
+  float: left;
+  font-size: 20px;
+}
+
+.footer a {
+  color: #EE0E51;
+  text-decoration: inherit;
+}
+
+#chart {
+  margin-top: 50px;
+  width: 100%;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  font-size: 120%;
 }

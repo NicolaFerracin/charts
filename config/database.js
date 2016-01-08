@@ -1,4 +1,4 @@
 module.exports = {
 	// the database url to connect
-	url : 'mongodb://user:password@ds037175.mongolab.com:37175/nightout'
+	url : 'mongodb://user:password@ds039185.mongolab.com:39185/chart'
 }
